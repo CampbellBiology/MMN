@@ -1,0 +1,57 @@
+<!Doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MMN-로그인</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>     
+    <main>
+        <form style=" width: 60vw; margin-left : 25vw;">
+        <div id="logo">
+            <img src="logo_MMN.png" width="200px">
+        </div>
+        <div id="blank"></div>
+
+        <div id="maintext">로그인</div>
+
+
+        <table>       
+        <tr>
+            <td>
+                아이디
+            </td>
+            <td>
+                <input type="text" id="user_id" class="txtbox" name="user_id">
+            </td>
+        </tr>
+        <tr>
+            <td></td><td><div id="id_noti" class="noti"></div></td>
+        </tr>
+        
+
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="text" id="user_pw" class="txtbox" name="user_pw"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="pw_noti" class="noti"></div></td>
+        </tr>
+
+
+    </table>       
+<br>
+
+    <input type="button" value="취소" id="cancel">
+    <input type="submit" value="로그인하기" id="submit">
+    </form>
+    </main>
+<br>    
+   
+</body>
+
+</html>

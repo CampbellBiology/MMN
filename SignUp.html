@@ -1,0 +1,83 @@
+<!Doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MMN-가입하기</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>     
+    <main>
+        <form style=" width: 60vw; margin-left : 25vw;">
+        <div id="logo">
+            <img src="logo_MMN.png" width="200px">
+        </div>
+        <div id="blank"></div>
+
+        <div id="maintext">회원가입</div>
+
+
+        <table>       
+        <tr>
+            <td>
+                아이디
+            </td>
+            <td>
+                <input type="text" id="user_id" class="txtbox" name="user_id">
+            </td>
+        </tr>
+        <tr>
+            <td></td><td><div id="id_noti" class="noti"></div></td>
+        </tr>
+        
+
+        <tr>
+            <td>비밀번호</td>
+            <td><input type="text" id="user_pw" class="txtbox" name="user_pw"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="pw_noti" class="noti"></div></td>
+        </tr>
+
+
+        <tr>
+            <td>비밀번호 확인</td>
+            <td><input type="text"id="pw_confirm" class="txtbox"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="PWConfirm_noti" class="noti"></td>
+        </tr>
+        
+        <tr>
+            <td>이름(별명)</td>
+            <td><input type="text" id="user_name" class="txtbox" name="user_name"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="name_noti" class="noti"></div></td>
+        </tr>
+        
+        <tr>
+            <td>이메일</td>
+            <td><input type="text" id="user_email" class="txtbox" name="user_email"></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="email_noti" class="noti"></div></td>
+        </tr>
+    </table>       
+<br>
+
+<input type="button" value="취소" id="cancel">
+<input type="submit" value="가입하기" id="submit">
+    </form>
+    </main>
+<br>    
+   
+</body>
+
+</html>
