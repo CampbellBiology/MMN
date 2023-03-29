@@ -37,7 +37,7 @@ public class DB_Conn {
 			// db 접속
 
 			conn = DriverManager.getConnection(url, id, pwd);
-			System.out.println("db접속 성공");
+			System.out.println("db접속 성공!");
 		} catch (Exception e) {
 			// db관련작업은 반드시 익셉션 처리
 			System.out.println("db접속 실패");
