@@ -5,22 +5,32 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import DataClass.Insert_joinData;
 import DataClass.loginData;
+import DataClass.menuData;
+import DataClass.storeData;
 
 public class DB_Conn {
 	String _Sql;
 
 	Connection conn = null;
 
+	HashMap<Integer, storeData> map = new HashMap<>();
+	HashMap<Integer, menuData> menu_map = new HashMap<>();
+
 	public DB_Conn() {
 		Connection();
+		constructStoreMap();
+		constructMenuMap();
 	}
 
 	public DB_Conn(String _Sql) {
 		Connection();
+		constructStoreMap();
+		constructMenuMap();
 		this._Sql = _Sql;
 	}
 
@@ -127,5 +137,84 @@ public class DB_Conn {
 		}
 
 		return 12;
+	}
+
+	public void constructStoreMap() {
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM storeTbl";
+			res = stmt.executeQuery(sql);
+
+			while (res.next()) {
+				int storeCode = res.getInt("storeCode");
+				String storeName = res.getString("storeName");
+				int cateCode = res.getInt("cateCode");
+				String openAt = res.getString("openAt");
+				String closeAt = res.getString("closeAt");
+				String offDays = res.getString("offDays");
+				String lastOrder = res.getString("lastOrder");
+				String phone = res.getString("phone");
+				String addr = res.getString("addr");
+				String parking = res.getString("parking");
+				String storeImgPath = res.getString("storeImgPath");
+				String web = res.getString("web");
+
+				storeData sd = new storeData(storeCode, storeName, cateCode, openAt, closeAt, offDays, lastOrder, phone,
+						addr, parking, storeImgPath, web);
+				map.put(storeCode, sd);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public void constructMenuMap() {
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM menuTbl";
+			res = stmt.executeQuery(sql);
+
+			while (res.next()) {
+				int storeCode = res.getInt("storeCode");
+				int foodCode = res.getInt("foodCode");
+				String foodName = res.getString("foodName");
+				int price = res.getInt("price");
+
+				menuData md = new menuData(storeCode, foodCode, foodName, price);
+				menu_map.put(foodCode, md);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	public ArrayList<storeData> storefindAll() {
+		return new ArrayList<>(map.values());
+	}
+	
+	public ArrayList<menuData> menufindAll() {
+		return new ArrayList<>(menu_map.values());
 	}
 }
