@@ -1,0 +1,358 @@
+#header {
+    background-color: rgb(229, 252, 252);
+    width: 100%;
+    height: 200px;
+    margin: auto;
+    text-align: center;
+}
+
+
+
+#body {
+    border: 1px solid black;
+    width: 1000px;
+    height: auto;
+    margin: auto;
+    text-align: center;
+}
+
+#blank {
+    border: 3px dotted rgb(174, 174, 174);
+    width: 100%;
+    height: 50px;
+    clear: both;
+}
+
+#store {
+    border: 3px solid green;
+}
+
+#store_photo{
+    background-color: rgb(213, 180, 244);
+    width: 450px;
+    height: 550px;
+    display: inline-block;
+    float:left;
+}
+
+#store_info {
+    display: inline-block;
+    float:right;
+}
+
+#store_name{
+    background-color: rgb(177, 251, 226);
+    width: 400px;
+    height: 100px;
+    display: inline-block;
+    float: left;
+}
+
+#store_keep{
+    background-color: rgb(226, 205, 43);
+    width:100px;
+    height:100px;
+    display: inline-block;
+    float: right;
+}
+
+#store_detail{
+    background-color: rgb(244, 208, 224);
+    width: 500px;
+    height: 500px;
+    margin-bottom: 50px;
+
+}
+
+.photo {
+    text-align: center;
+    margin: auto;
+    border: 1px solid black;
+}
+
+#big_photo {
+    width: 400px;
+    height: 400px;
+    background-color: azure;
+    /* border: 1px solid black; */
+}
+
+#small_photo {
+    width: 99px;
+    height: 99px;
+    margin: 0px;
+    display: inline-block;
+    background-color: antiquewhite;
+    /* border: 1px solid black; */
+}
+
+#store_static {
+    width: 1000px;
+    height: auto;
+    background-color: rgb(193, 193, 255);
+    clear: both;
+}
+
+.store_static {
+    width: 350px;
+    height: 200px;
+    background-color: aliceblue;
+    display: inline-block;
+    margin: 50px;
+}
+
+li {
+    list-style-type: none;
+    float: left;
+    margin: 5px;
+}
+
+#create_riview {
+    width: 900px;
+    height: 800px;
+    border: 3px solid rgb(13, 255, 0);
+    text-align: center;
+    margin:auto;
+    display: block;
+}
+
+#first_row {
+    width: 900px;
+    height: 100px;
+    background-color: rgb(241, 241, 254);
+}
+
+#review_store_name {
+    width: 300px;
+    height: 30px;
+    float: left;
+    text-align: left;
+    padding: 10px;
+    font-size: 32px;
+    font-weight: 600;
+    background-color: rgb(225, 255, 184);
+}
+
+#noname_check {
+    float:right;
+    background-color: aliceblue;
+}
+
+#review_whatIAte {
+    width: 300px;
+    height: 30px;
+    float: right;
+    background-color: rgb(230, 203, 255);
+}
+
+#second_row {
+    width: 900px;
+    height: 50px;
+    background-color: rgb(220, 220, 254);
+}
+
+#review_whatIAte {
+    width: 400px;
+    height: 50px;
+    background-color: rgb(152, 152, 152);
+    text-align: left;
+    font-size: 25px;
+    float:left;
+}
+
+#score_title {
+    width: 400px;
+    height: 50px;
+    background-color: rgb(152, 152, 152);
+    text-align: left;
+    font-size: 25px;
+    float:right;
+}
+
+#third_row {
+    width: 900px;
+    height: 100px;
+    background-color: rgb(189, 189, 255);
+}
+
+#score {
+    width: 400px;
+    height: 50px;
+    float: right;
+    background-color: rgb(185, 226, 21);
+}
+
+.score {
+    display: inline-block;
+    font-weight: 600;
+}
+
+.score_btn {
+    font-size: 20px;
+}
+
+#show_whatIAte {
+    width: 400px;
+    float:left;
+    background-color: rgb(240, 182, 121);
+}
+
+.whatiate {
+    background-color: rgb(247, 67, 67);
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    border-radius: 5px;
+    float:left;
+    margin: 10px;
+}
+
+#forth_row {
+    width: 900px;
+    height: 100px;
+    background-color: rgb(162, 162, 250);
+    clear:both;
+    text-align: left;
+    margin: 10px;
+}
+
+.create_tag {
+    display: inline-block;
+    background-color: pink;
+    width: 200px;
+    height: 30px;
+}
+
+#fifth_row {
+    width: 900px;
+    height: 100px;
+    background-color: rgb(128, 128, 251);
+    text-align: left;
+    margin: 10px;
+}
+
+#sixth_row {
+    width: 900px;
+    height: 200px;
+    background-color: rgb(115, 115, 253);
+    text-align: left;
+    margin: 10px;
+}
+
+#regImages {
+    width: 850px;
+    margin: 10px;
+    height: 150px;
+    background-color: rgb(246, 246, 249);
+}
+
+.reg_images {
+    width: 150px;
+    height: 150px;
+    border: 1px solid black;
+    display: inline-block;
+    margin: 5px;
+}
+
+#show_review{
+    border: 3px solid green;
+}
+
+#first_line {
+    width: 900px;
+    height: 100px;
+    background-color: rgb(197, 247, 192);
+    text-align: left;
+    margin: 10px;
+    display: inline-block;
+}
+
+#review_title {
+    text-align: left;
+    background-color: rgb(126, 126, 247);
+    width: 200px;
+    margin:10px;
+    float: left;
+    font-size: 30px;
+    color: white;
+    
+}
+#review_sort{
+    background-color: blueviolet;
+    width: 490px;
+    float: right;
+    text-align: right;
+}
+
+.show_score {
+    font-weight: 600;
+}
+
+#review_profile {
+    background-color: yellow;
+    display: inline-block;
+    float:left;
+    width: 150px;
+    height: 300px;
+}
+
+#review_detail {
+    background-color: yellowgreen;
+    display: inline-block;
+    width: 650px;
+    height: 400px;
+    text-align: left;
+    float:right;
+}
+
+#second_line {
+    background-color: rgb(157, 248, 148);
+    width: 600px;
+    height: 50px;
+}
+
+#reg_date {
+    float: left;
+}
+
+#show_rate {
+    float: right;
+}
+
+#third_line {
+    background-color: rgb(101, 248, 87);
+    width: 600px;
+    height: 50px;
+    display: inline-block;
+}
+
+#WIA_title, #WIA_contents {
+    display: inline;
+}
+
+#forth_line {
+    background-color: rgb(58, 182, 47);
+    width: 600px;
+    height: 150px;
+    display: inline-block;
+}
+
+#riview_contents {
+    background-color: rgb(153, 82, 134);
+    width: 500px;
+    height: 100px;
+}
+
+#fifth_line {
+    background-color: rgb(37, 157, 26);
+    width: 600px;
+    height: 150px;
+    display: inline-block;
+}
+
+.show_images {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
