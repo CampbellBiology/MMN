@@ -6,6 +6,11 @@
     <title>MMN-가게</title>
     <!-- <link rel="stylesheet" href="style.css"> -->
     <link rel="stylesheet" href="style_store.css">
+
+    <link rel="stylesheet" type="text/css" href="../slick-1.8.1/slick/slick.css">
+    <link rel="stylesheet" type="text/css" href="../slick-1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" type="text/css" href="style_ImagePopUp.css">
+
 </head>
 
 <body>
@@ -20,7 +25,7 @@
                     <div id="small_photo" class="photo">이미지2</div>
                     <div id="small_photo" class="photo">이미지3</div>
                     <div id="small_photo" class="photo">이미지4</div>
-                    <div id="small_photo" class="photo">이미지5</div>
+                    <div id="small_photo" class="photo"><button id="show">팝업열기</button></div>
                 </div>
                 <div id="store_info">
                     <div id="store_name">번호+가게이름</div>
@@ -148,7 +153,88 @@
                         </div>
                     </div>
                 </div>
-            <div id="blank">여백</div>
+                <div id="blank">여백</div>
+
+
+                <!-- 여기서부터
+팝업창입니다 -->
+
+                <div class="background">
+                    <div class="window">
+                        <!-- 팝업페이지 -->
+                        <div class="popup">
+                            <button id="close">팝업닫기</button>
+
+                            <!-- 슬라이드 CSS 라이브러리 -->
+                            <div id="mainImage">
+                                <img src="storeImg/1.jpg" id="main_image" width="400px">
+                            </div>
+                            <section class="center slider">
+                                <div>
+                                    <img src="storeImg/1.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/2.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/3.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/4.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/5.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/6.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/7.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/8.jpg">
+                                </div>
+                                <div>
+                                    <img src="storeImg/9.jpg">
+                                </div>
+                            </section>
+
+                        </div>
+                        <!-- <div>
+                    <div></div>
+                  </div> -->
+                    </div>
+                </div>
+
+                <!-- 모달 팝업 스크립트 -->
+                <script>
+                    function show() {
+                        document.querySelector(".background").className = "background show";
+                    }
+
+                    function close() {
+                        document.querySelector(".background").className = "background";
+                    }
+
+                    document.querySelector("#show").addEventListener("click", show);
+                    document.querySelector("#close").addEventListener("click", close);
+                </script>
+
+                <!-- 슬라이드 CSS 라이브러리 스크립트 -->
+                <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+                <script src="../slick-1.8.1/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+                <script type="text/javascript">
+                    $(document).on('ready', function () {
+
+                        $(".center").slick({
+                            dots: true,
+                            infinite: true,
+                            centerMode: true,
+                            slidesToShow: 5,
+                            slidesToScroll: 3
+                        });
+                    });
+                </script>
 
     </main>
 
