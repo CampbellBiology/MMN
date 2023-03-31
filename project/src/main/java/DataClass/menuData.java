@@ -5,7 +5,7 @@ public class menuData {
 	int foodCode;
 	String foodName;
 	int price;
-	
+
 	public menuData(int _storeCode, int _foodCode, String _foodName, int _price) {
 		storeCode = _storeCode;
 		foodCode = _foodCode;
@@ -44,6 +44,5 @@ public class menuData {
 	public void setPrice(int price) {
 		this.price = price;
 	}
-	
-	
+
 }

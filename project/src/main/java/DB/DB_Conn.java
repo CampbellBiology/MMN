@@ -11,26 +11,26 @@ import java.util.HashMap;
 import DataClass.Insert_joinData;
 import DataClass.loginData;
 import DataClass.menuData;
+import DataClass.reviewTargetData;
+import DataClass.rtdCntData;
 import DataClass.storeData;
 
 public class DB_Conn {
 	String _Sql;
+	final int Max_FoodCode = 10001;
 
 	Connection conn = null;
 
-	HashMap<Integer, storeData> map = new HashMap<>();
+	HashMap<Integer, storeData> store_map = new HashMap<>();
 	HashMap<Integer, menuData> menu_map = new HashMap<>();
+	HashMap<Integer, rtdCntData> rtdCnt_map = new HashMap<>();
 
 	public DB_Conn() {
 		Connection();
-		constructStoreMap();
-		constructMenuMap();
 	}
 
 	public DB_Conn(String _Sql) {
 		Connection();
-		constructStoreMap();
-		constructMenuMap();
 		this._Sql = _Sql;
 	}
 
@@ -160,10 +160,12 @@ public class DB_Conn {
 				String parking = res.getString("parking");
 				String storeImgPath = res.getString("storeImgPath");
 				String web = res.getString("web");
+				String breakStart = res.getString("breakStart");
+				String breakEnd = res.getString("breakEnd");
 
 				storeData sd = new storeData(storeCode, storeName, cateCode, openAt, closeAt, offDays, lastOrder, phone,
-						addr, parking, storeImgPath, web);
-				map.put(storeCode, sd);
+						addr, parking, storeImgPath, web, breakStart, breakEnd);
+				store_map.put(storeCode, sd);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -178,7 +180,7 @@ public class DB_Conn {
 			}
 		}
 	}
-	
+
 	public void constructMenuMap() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -210,11 +212,80 @@ public class DB_Conn {
 		}
 	}
 	
-	public ArrayList<storeData> storefindAll() {
-		return new ArrayList<>(map.values());
+	public void constructRtdCnt_map() {
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM reviewTarget";
+			res = stmt.executeQuery(sql);
+			
+			int [] tmp = new int[Max_FoodCode];
+
+			while (res.next()) {
+				int index = res.getInt("_index");
+				int foodCode = res.getInt("foodCode");
+
+				tmp[foodCode]++;
+			}
+			
+			for(int i=0;i<Max_FoodCode;i++) {
+				if(tmp[i] == 0)continue;
+				rtdCntData rcd = new rtdCntData(i, tmp[i]);
+				rtdCnt_map.put(i, rcd);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}
 	
+	public String getFoodName(int foodCode) {
+		Statement stmt = null;
+		ResultSet res = null;
+		String foodName="";
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM menuTbl Where foodCode = "+ foodCode;
+			res = stmt.executeQuery(sql);
+			while (res.next()) {
+				foodName = res.getString("foodName");
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return foodName;
+	}
+
+	public ArrayList<storeData> storefindAll() {
+		return new ArrayList<>(store_map.values());
+	}
+
 	public ArrayList<menuData> menufindAll() {
 		return new ArrayList<>(menu_map.values());
+	}
+	
+	public ArrayList<rtdCntData> rtdCntfindAll() {
+		return new ArrayList<>(rtdCnt_map.values());
 	}
 }

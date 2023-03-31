@@ -48,6 +48,7 @@ public class loginServlet extends HttpServlet {
 			_Data.userPW = user_pw;
 
 			int res = _DB.loginMathcing(_Data);
+			loginData.setLoginStatus(res);
 
 			String context = request.getContextPath();
 

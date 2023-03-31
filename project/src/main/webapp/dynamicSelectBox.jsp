@@ -11,24 +11,28 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>상품 목록</title>
+<title>메뉴</title>
 </head>
 <body>
-	<h2>상품 목록</h2>
+	<h2>메뉴</h2>
 	<hr>
 
-<%
+	<%
 	DB_Conn _db = new DB_Conn();
-	ArrayList <menuData> list = _db.menufindAll();
-%>
-	<select name="food">
-	<% 
-		for(menuData md:list){
-			%>
-			<option value = "<%= md.getFoodCode() %>" selected> <%= md.getFoodName() %></option>
-			<%
+	_db.constructMenuMap();
+	ArrayList<menuData> list = _db.menufindAll();
+	%>
+	<select name="menu">
+		<%
+		int cnt = 0;
+		for (menuData md : list) {
+		%>
+		<option value="<%=md.getFoodCode()%>" <%=cnt == 0 ? "selected" : ""%>>
+			<%=md.getFoodName()%></option>
+		<%
+		cnt++;
 		}
-	 %>
+		%>
 
 	</select>
 
