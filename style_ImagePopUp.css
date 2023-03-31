@@ -1,6 +1,7 @@
 #mainImage {
     text-align: center;
     margin: auto;
+    margin-left: -150px;
 }
 
 html, body {
@@ -83,7 +84,7 @@ html, body {
     box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
 
     /* 임시 지정 */
-    width: 1000px;
+    width: 800px;
     height: 600px;
 
     /* 초기에 약간 아래에 배치 */
@@ -91,6 +92,18 @@ html, body {
   }
 
   .show .popup {
-    transform: translate(-50%, -50%);
-    transition: all 0.5s;
+    transform: translate(-70%, -50%);
+    
+  }
+
+  #pop_riview {
+    background-color: blueviolet;
+    float: right;
+    position: sticky;
+    margin: 0px;
+    margin-top: -400px;
+    margin-left: -100px;
+width: 250px;
+height: 400px;
+
   }
