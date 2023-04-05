@@ -276,6 +276,39 @@ public class DB_Conn {
 		
 		return foodName;
 	}
+	
+	public double getAverageRating(int storeCode) {
+		int ret = 0;
+		int cnt = 0;
+		
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM reviewTbl Where storeCode = "+ storeCode;
+			res = stmt.executeQuery(sql);
+			while (res.next()) {
+				int rating = res.getInt("rating");
+				ret += rating;
+				cnt++;
+			}
+			
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return ((double)ret)/((double)cnt);
+	}
 
 	public ArrayList<storeData> storefindAll() {
 		return new ArrayList<>(store_map.values());

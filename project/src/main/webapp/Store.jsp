@@ -32,6 +32,9 @@
 	DB_Conn _db = new DB_Conn();
 	_db.constructStoreMap();
 	_db.constructRtdCnt_map();
+	_db.constructMenuMap();
+	
+	ArrayList<menuData> list = _db.menufindAll();
 
 	ArrayList<storeData> storeList = new ArrayList<>();
 	ArrayList<rtdCntData> rtdCntList = new ArrayList<>();
@@ -48,7 +51,7 @@
         
             <div id="store">
                 <div id="store_photo"> 가게 이미지 및 음식 사진
-                    <div id="big_photo" class="photo">제일 큰 이미지</div>
+                    <div id="big_photo" class="photo"><img src = "<%=storeImgPath %>"></div>
                     <div id="small_photo" class="photo">이미지2</div>
                     <div id="small_photo" class="photo">이미지3</div>
                     <div id="small_photo" class="photo">이미지4</div>
@@ -86,6 +89,8 @@
                 </div>
             </div>
             <hr>
+            
+            <form method="post" action="review">
 
             <div id="create_riview">
                 <div id="first_row">
@@ -96,8 +101,16 @@
                 <div id="second_row">
                     <div id="review_whatIAte">내가 먹은 메뉴
                         <select>
-                            <option>동적으로</option>
-                            <option>만들어야해</option>
+<%
+		int cnt = 0;
+		for (menuData md : list) {
+		%>
+		<option value="<%=md.getFoodCode()%>" <%=cnt == 0 ? "selected" : ""%>>
+			<%=md.getFoodName()%></option>
+		<%
+		cnt++;
+		}
+		%>
                         </select>
                     </div>
                     <div id="score_title">평점</div>
@@ -148,10 +161,12 @@
 
                     <div id="seventh_row">
                         <button type="button" value="toMain">취소</button>
-                        <button type="button" value="submit">등록하기</button>
+                        <button type="submit">등록하기</button>
                     </div>
                 </div>
             </div>
+           	</form>
+            
             <div id="blank">여백</div>
 
             <div id="show_review">
