@@ -277,8 +277,11 @@ public class DB_Conn {
 		return foodName;
 	}
 	
+	// 리뷰가 없다면 음수 리턴
 	public double getAverageRating(int storeCode) {
+		// 평점의 합
 		int ret = 0;
+		// 리뷰의 개수
 		int cnt = 0;
 		
 		Statement stmt = null;
@@ -306,6 +309,9 @@ public class DB_Conn {
 				e.printStackTrace();
 			}
 		}
+		
+		if(cnt == 0)
+			return -1;
 		
 		return ((double)ret)/((double)cnt);
 	}
