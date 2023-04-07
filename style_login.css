@@ -1,9 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap');
+
+* {
+    font-family: 'Nanum Gothic', sans-serif;
+}
 form {
     text-align: center;
 }
 
 #maintext {
-font-size: larger;
+font-family: gaegu;
+font-size: 3em;
+font-weight: 600;
 margin: 5%;
 }
 
