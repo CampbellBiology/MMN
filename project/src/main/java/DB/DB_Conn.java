@@ -211,7 +211,8 @@ public class DB_Conn {
 			}
 		}
 	}
-	
+
+	// HashMap rtd()
 	public void constructRtdCnt_map() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -219,8 +220,8 @@ public class DB_Conn {
 			stmt = conn.createStatement();
 			String sql = "SELECT * FROM reviewTarget";
 			res = stmt.executeQuery(sql);
-			
-			int [] tmp = new int[Max_FoodCode];
+
+			int[] tmp = new int[Max_FoodCode];
 
 			while (res.next()) {
 				int index = res.getInt("_index");
@@ -228,9 +229,10 @@ public class DB_Conn {
 
 				tmp[foodCode]++;
 			}
-			
-			for(int i=0;i<Max_FoodCode;i++) {
-				if(tmp[i] == 0)continue;
+
+			for (int i = 0; i < Max_FoodCode; i++) {
+				if (tmp[i] == 0)
+					continue;
 				rtdCntData rcd = new rtdCntData(i, tmp[i]);
 				rtdCnt_map.put(i, rcd);
 			}
@@ -247,20 +249,22 @@ public class DB_Conn {
 			}
 		}
 	}
-	
+
+	// foodCode가 주어졌을 때 음식 이름을 리턴한다.
 	public String getFoodName(int foodCode) {
 		Statement stmt = null;
 		ResultSet res = null;
-		String foodName="";
+		String foodName = "";
 		try {
 			stmt = conn.createStatement();
-			String sql = "SELECT * FROM menuTbl Where foodCode = "+ foodCode;
+			// 메뉴테이블에서 foodCode 를 입력해 메뉴들을 가져온다.
+			String sql = "SELECT * FROM menuTbl Where foodCode = " + foodCode;
 			res = stmt.executeQuery(sql);
 			while (res.next()) {
+				// 음식 이름을 foodName에 입력시킨다.
 				foodName = res.getString("foodName");
 			}
-			
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
@@ -273,18 +277,66 @@ public class DB_Conn {
 				e.printStackTrace();
 			}
 		}
-		
+
 		return foodName;
 	}
 
+	// 리뷰가 없다면 음수 리턴
+	// 평균평점을 리턴하는 함수
+	public double getAverageRating(int storeCode) {
+		// 평점의 합
+		int ratingSum = 0;
+		// 리뷰의 개수
+		int cnt = 0;
+
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			stmt = conn.createStatement();
+			// 해당 가게코드가 storeCode인 리뷰들을 가져온다.
+			String sql = "SELECT * FROM reviewTbl Where storeCode = " + storeCode;
+			res = stmt.executeQuery(sql);
+			
+			// 가게코드가 storeCode인 리뷰들을 순회한다.
+			while (res.next()) {
+				// 평점에 해당하는 값을 변수 rating에 입력시킨다.
+				int rating = res.getInt("rating");
+				// 평점을 모두 더해준다.
+				ratingSum += rating;
+				// 리뷰의 개수
+				cnt++;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		// 가게코드가 storeCode인 리뷰가 하나도 없다면 음수를 리턴한다.
+		if (cnt == 0)
+			return -1;
+
+		return ((double) ratingSum) / ((double) cnt);
+	}
+	
+	// HashMap인 store_map을 ArrayList로 바꿔준다.
 	public ArrayList<storeData> storefindAll() {
 		return new ArrayList<>(store_map.values());
 	}
 
+	// HashMap인 menu_map을 ArrayList로 바꿔준다.
 	public ArrayList<menuData> menufindAll() {
 		return new ArrayList<>(menu_map.values());
 	}
-	
+
+	// HashMap인 rtdCnt_map을 ArrayList로 바꿔준다.
 	public ArrayList<rtdCntData> rtdCntfindAll() {
 		return new ArrayList<>(rtdCnt_map.values());
 	}
