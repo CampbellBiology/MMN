@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Gaegu&display=swap');
+
+* {
+    font-family: 'Gaegu', cursive;
+    text-align: center;
+}
+
+form {
+    text-align: center;
+    display: inline-block;
+    /* background-color: rgb(255, 226, 226); */
+    /* border: 1px solid black; */
+    position: relative;
+    padding-left: 20%;
+}
+
+
+#leftside {
+    /* display: block; */
+    /* background-color: aqua; */
+    /* border: 1px solid black; */
+    margin: auto;
+    position: absolute;
+    top: 30%;
+    /* left: -10%; */
+    margin-left: -400px;
+}
+
+#form {
+    display: inline-block;
+    justify-content: center;  
+    /* border: 1px solid black; */
+    margin-left: 30px;
+    margin-top: 100px;
+    /* margin-left: 6%; */
+}
+
+#maintext {
+font-size: 2.5em;
+color:rgb(89, 89, 89);
+font-weight: 500;
+margin: 40px;
+}
+
+.txtbox {
+    border: 1px solid rgb(203, 203, 203);
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0);
+    width: 330px;
+    height: 35px;
+    margin-left: -10px;
+    /* margin-bottom: 10px; */
+}
+
+.noti {
+    background-color: rgb(194, 121, 49);
+    width: 200px;
+    /* height: 30px; */
+    margin: auto;
+    display: none;
+}
+
+.label {
+    text-align: left;
+}
+
+#formText {
+    text-align: left;
+    font-weight: 600;
+    font-size: 22px;
+    color:rgb(89, 89, 89);
+    margin-bottom: 5px;
+}
+
+#blank {
+    height: 50px;
+}
+
+#cancel {
+    background: url(../UI/UI/btn_cancel.png) no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+    margin-left:20px;
+    margin-right: 30px;
+}
+
+#submit {
+    background: url(../UI/UI/btn_login.png) no-repeat;
+    background-size: contain;
+    width: 150px;
+    height: 50px;
+    cursor: pointer;
+    border: none;
+}
+
+#cancel:hover {
+    background: url(../UI/UI/btn_cancel_hover.png) no-repeat;
+    background-size: contain;
+}
+
+#submit:hover {
+    background: url(../UI/UI/btn_login_hover.png) no-repeat;
+    background-size: contain;
+}

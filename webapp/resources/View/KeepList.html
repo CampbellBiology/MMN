@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="../CSS/style_keepList.css">
+
+</head>
+
+<body>
+  <button id="show">팝업열기</button>
+  <div class="background">
+    <div class="window">
+
+
+
+      <div class="popup">  
+
+        <div id = "store">
+          <div id="keep_icon"></div>
+          <div id="store_photo">사진</div>
+          <div id="store_details">
+            <div id="store_name">가게명</div>
+            <div id="store_score">평점</div>
+            <div id="store_category">업종분류</div>
+            <div id="store_address">주소 뫄뫄뫄뫄뫄뫄뫄뫄</div>
+          </div>
+        </div>
+
+        <div id = "store">
+          <div id="keep_icon"></div>
+          <div id="store_photo">사진2</div>
+          <div id="store_details">
+            <div id="store_name">가게명2</div>
+            <div id="store_score">평점2</div>
+            <div id="store_category">업종분류2</div>
+            <div id="store_address">주소2 뫄뫄뫄뫄뫄뫄뫄뫄</div>
+          </div>
+        </div>
+
+        <div id = "store">
+          <div id="keep_icon"></div>
+          <div id="store_photo">사진3</div>
+          <div id="store_details">
+            <div id="store_name">가게명3</div>
+            <div id="store_score">평점3</div>
+            <div id="store_category">업종분류3</div>
+            <div id="store_address">주소3 뫄뫄뫄뫄뫄뫄뫄뫄</div>
+          </div>
+        </div>
+
+
+        <div id = "store">
+          <div id="keep_icon"></div>
+          <div id="store_photo">사진2</div>
+          <div id="store_details">
+            <div id="store_name">가게명2</div>
+            <div id="store_score">평점2</div>
+            <div id="store_category">업종분류2</div>
+            <div id="store_address">주소2 뫄뫄뫄뫄뫄뫄뫄뫄</div>
+          </div>
+        </div>
+
+        <div id = "store">
+          <div id="keep_icon"></div>
+          <div id="store_photo">사진2</div>
+          <div id="store_details">
+            <div id="store_name">가게명2</div>
+            <div id="store_score">평점2</div>
+            <div id="store_category">업종분류2</div>
+            <div id="store_address">주소2 뫄뫄뫄뫄뫄뫄뫄뫄</div>
+          </div>
+        </div>
+
+        <button id="close">팝업닫기</button>
+      </div>
+
+
+    </div>
+  </div>
+
+  <script>
+    function show() {
+      document.querySelector(".background").className = "background show";
+    }
+
+    function close() {
+      document.querySelector(".background").className = "background";
+    }
+
+    document.querySelector("#show").addEventListener("click", show);
+    document.querySelector("#close").addEventListener("click", close);
+  </script>
+</body>
+
+</html>
