@@ -1,7 +1,5 @@
 package DataClass;
 
-import DB.DB_Conn;
-
 public class storeAverageRatingData implements Comparable<storeAverageRatingData>{
 	int storeCode;
 	double avgRating;

@@ -15,6 +15,10 @@ public class storeData {
 	public String web;
 	public String breakStart;
 	public String breakEnd;
+	
+	public storeData() {
+		
+	}
 
 	public storeData(int _storeCode, String _storeName, int _cateCode, String _openAt, String _closeAt, String _offDays,
 			String _lastOrder, String _phone, String _addr, String _parking, String _storeImgPath, String _web,

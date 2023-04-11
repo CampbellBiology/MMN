@@ -6,6 +6,10 @@ public class menuData {
 	String foodName;
 	int price;
 
+	public menuData() {
+		
+	}
+	
 	public menuData(int _storeCode, int _foodCode, String _foodName, int _price) {
 		storeCode = _storeCode;
 		foodCode = _foodCode;

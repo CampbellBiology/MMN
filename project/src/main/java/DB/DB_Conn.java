@@ -11,9 +11,9 @@ import java.util.HashMap;
 import DataClass.Insert_joinData;
 import DataClass.loginData;
 import DataClass.menuData;
-import DataClass.reviewTargetData;
 import DataClass.rtdCntData;
 import DataClass.storeData;
+import DataClass.tagData;
 
 public class DB_Conn {
 	String _Sql;
@@ -126,11 +126,11 @@ public class DB_Conn {
 					// 만약 마스터 계정이면 0을 리턴한다.
 					if (isMaster.equals("Y")) {
 						return 0;
-					// 마스터 계정이 아니면 1을 리턴한다.
+						// 마스터 계정이 아니면 1을 리턴한다.
 					} else {
 						return 1;
 					}
-				// 입력된 패스워드와 데이터베이스의 패스워드가 일치하지 않다면 2를 리턴한다.
+					// 입력된 패스워드와 데이터베이스의 패스워드가 일치하지 않다면 2를 리턴한다.
 				} else {
 					return 2;
 				}
@@ -165,7 +165,7 @@ public class DB_Conn {
 				String phone = res.getString("phone");
 				String addr = res.getString("addr");
 				String parking = res.getString("parking");
-				String storeImgPath = res.getString("storeImgPath");
+				String storeImgPath = res.getString("storeImagePath");
 				String web = res.getString("web");
 				String breakStart = res.getString("breakStart");
 				String breakEnd = res.getString("breakEnd");
@@ -190,7 +190,7 @@ public class DB_Conn {
 		}
 	}
 
-	// HashMap 인 menu_map을 만들어간다. 
+	// HashMap 인 menu_map을 만들어간다.
 	public void constructMenuMap() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -224,7 +224,7 @@ public class DB_Conn {
 		}
 	}
 
-	// HashMap인 rtdCnt_map를 만든다.
+	// HashMap인 rtdCnt_map을 만든다.
 	public void constructRtdCnt_map() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -238,7 +238,6 @@ public class DB_Conn {
 			int[] tmp = new int[Max_FoodCode];
 
 			while (res.next()) {
-				int index = res.getInt("_index");
 				int foodCode = res.getInt("foodCode");
 
 				// foodCode일때 배열 값을 1씩 증가시킨다. 리뷰 타겟의 개수를 증가시키는 것과 같다.
@@ -313,7 +312,7 @@ public class DB_Conn {
 			stmt = conn.createStatement();
 			String sql = "SELECT * FROM reviewTbl Where storeCode = " + storeCode;
 			res = stmt.executeQuery(sql);
-			
+
 			// 가게코드가 storeCode인 리뷰들을 순회한다.
 			while (res.next()) {
 				// 평점에 해당하는 값을 변수 rating에 입력시킨다.
@@ -342,7 +341,7 @@ public class DB_Conn {
 
 		return ((double) ratingSum) / ((double) cnt);
 	}
-	
+
 	// HashMap인 store_map을 ArrayList로 바꿔준다.
 	public ArrayList<storeData> storefindAll() {
 		return new ArrayList<>(store_map.values());
@@ -356,5 +355,179 @@ public class DB_Conn {
 	// HashMap인 rtdCnt_map을 ArrayList로 바꿔준다.
 	public ArrayList<rtdCntData> rtdCntfindAll() {
 		return new ArrayList<>(rtdCnt_map.values());
+	}
+
+	public storeData getStoreData(int storeCode) {
+		storeData sd = new storeData();
+
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			stmt = conn.createStatement();
+			String sql = "SELECT * FROM storeTbl where storeCode = " + storeCode;
+			res = stmt.executeQuery(sql);
+
+			while (res.next()) {
+				String storeName = res.getString("storeName");
+				int cateCode = res.getInt("cateCode");
+				String openAt = res.getString("openAt");
+				String closeAt = res.getString("closeAt");
+				String offDays = res.getString("offDays");
+				String lastOrder = res.getString("lastOrder");
+				String phone = res.getString("phone");
+				String addr = res.getString("addr");
+				String parking = res.getString("parking");
+				String storeImgPath = res.getString("storeImagePath");
+				String web = res.getString("web");
+				String breakStart = res.getString("breakStart");
+				String breakEnd = res.getString("breakEnd");
+
+				// storeData 클래스의 객체를 생성한다.
+				sd = new storeData(storeCode, storeName, cateCode, openAt, closeAt, offDays, lastOrder, phone, addr,
+						parking, storeImgPath, web, breakStart, breakEnd);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		return sd;
+	}
+
+	// 메뉴 검색을 통해 storeData ArrayList를 가져온다.
+	public ArrayList<storeData> getMenuInfo(String query) {
+		ArrayList<storeData> list = new ArrayList<>();
+		String[] tmp = query.split(" ");
+
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			String sql = "SELECT * FROM menuTbl WHERE foodName LIKE \"%";
+			stmt = conn.createStatement();
+			for (int i = 0; i < tmp.length; i++) {
+				sql += tmp[i] + "%";
+			}
+			sql += "\"";
+			res = stmt.executeQuery(sql);
+			while (res.next()) {
+				list.add(getStoreData(res.getInt("storeCode")));
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+
+	// 가게검색을 통해 storeData ArrayList를 가져온다.
+	public ArrayList<storeData> getStoreInfo(String query) {
+		ArrayList<storeData> list = new ArrayList<>();
+		String[] tmp = query.split(" ");
+
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			String sql = "SELECT * FROM storeTbl WHERE storeName LIKE \"%";
+			stmt = conn.createStatement();
+			for (int i = 0; i < tmp.length; i++) {
+				sql += tmp[i] + "%";
+			}
+			sql += "\"";
+			res = stmt.executeQuery(sql);
+			while (res.next()) {
+				int storeCode = res.getInt("storeCode");
+				String storeName = res.getString("storeName");
+				int cateCode = res.getInt("cateCode");
+				String openAt = res.getString("openAt");
+				String closeAt = res.getString("closeAt");
+				String offDays = res.getString("offDays");
+				String lastOrder = res.getString("lastOrder");
+				String phone = res.getString("phone");
+				String addr = res.getString("addr");
+				String parking = res.getString("parking");
+				String storeImgPath = res.getString("storeImagePath");
+				String web = res.getString("web");
+				String breakStart = res.getString("breakStart");
+				String breakEnd = res.getString("breakEnd");
+
+				// storeData 클래스의 객체를 생성한다.
+				storeData sd = new storeData(storeCode, storeName, cateCode, openAt, closeAt, offDays, lastOrder, phone,
+						addr, parking, storeImgPath, web, breakStart, breakEnd);
+
+				list.add(sd);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
+	}
+
+	// 태그검색을 통해 tagData ArrayList를 가져온다.
+	public ArrayList<tagData> getTagInfo(String query) {
+		ArrayList<tagData> list = new ArrayList<>();
+		String[] tmp = query.split(" ");
+
+		Statement stmt = null;
+		ResultSet res = null;
+		try {
+			String sql = "SELECT * FROM tagTbl WHERE tagName LIKE \"%";
+			stmt = conn.createStatement();
+			for (int i = 0; i < tmp.length; i++) {
+				sql += tmp[i] + "%";
+			}
+			sql += "\"";
+			res = stmt.executeQuery(sql);
+			while (res.next()) {
+				tagData td = new tagData();
+				td.setTagId(res.getInt("tagID"));
+				td.setTagName(res.getString("tagName"));
+				td.setTagViews(res.getInt("tagViews"));
+
+				list.add(td);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (res != null)
+					res.close();
+				if (stmt != null)
+					stmt.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+		return list;
 	}
 }
