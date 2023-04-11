@@ -2,11 +2,11 @@ package DataClass;
 
 import DB.DB_Conn;
 
-public class storeAverageRating implements Comparable<storeAverageRating>{
+public class storeAverageRatingData implements Comparable<storeAverageRatingData>{
 	int storeCode;
 	double avgRating;
 	
-	public storeAverageRating(int _storeCode, double _avgRating) {
+	public storeAverageRatingData(int _storeCode, double _avgRating) {
 		// TODO Auto-generated constructor stub
 		
 		storeCode = _storeCode;
@@ -30,7 +30,7 @@ public class storeAverageRating implements Comparable<storeAverageRating>{
 	}
 
 	@Override
-	public int compareTo(storeAverageRating sar) {
+	public int compareTo(storeAverageRatingData sar) {
 		if(sar.avgRating < avgRating) {
 			return -1;
 		}

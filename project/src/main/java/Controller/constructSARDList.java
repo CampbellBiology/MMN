@@ -4,19 +4,19 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import DB.DB_Conn;
-import DataClass.storeAverageRating;
+import DataClass.storeAverageRatingData;
 import DataClass.storeData;
 
 // 데이터클래스 storeAverageRating 의 리스트를 만든다. 
-public class constructSARList {
+public class constructSARDList {
 	
 	// 데이터클래스 storeAverageRating의 리스트이다.
-	ArrayList <storeAverageRating> list;
+	ArrayList <storeAverageRatingData> list;
 	
-	public constructSARList() {
+	public constructSARDList() {
 		// TODO Auto-generated constructor stub
 		// 리스트 객체 생성
-		list = new ArrayList<storeAverageRating>();
+		list = new ArrayList<storeAverageRatingData>();
 		
 		// DB_Conn 객체 생성
 		DB_Conn _db = new DB_Conn();
@@ -32,7 +32,7 @@ public class constructSARList {
 			// res는 평균 평점이다.
 			double res = _db.getAverageRating(tmp.storeCode);
 			// storeAverageRating의 객체를 생성한다.
-			storeAverageRating sar = new storeAverageRating(tmp.storeCode, res);
+			storeAverageRatingData sar = new storeAverageRatingData(tmp.storeCode, res);
 			// 위 객체를 list에 추가해준다.
 			list.add(sar);
 		}

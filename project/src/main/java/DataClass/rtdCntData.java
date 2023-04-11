@@ -1,5 +1,6 @@
 package DataClass;
 
+// reviewTargetData 의 개수를 세는 클래스다.
 public class rtdCntData implements Comparable<rtdCntData> {
 	int foodCode;
 	int cnt;

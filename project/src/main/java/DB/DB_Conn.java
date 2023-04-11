@@ -119,18 +119,24 @@ public class DB_Conn {
 				isMaster = res.getString("isMaster");
 			}
 
+			// userPW에 입력된 값이 있다면
 			if (userPW != null) {
+				// 입력된 패스워드와 데이터베이스의 패스워드가 일치한다면
 				if (userPW.equals(_data.userPW)) {
+					// 만약 마스터 계정이면 0을 리턴한다.
 					if (isMaster.equals("Y")) {
 						return 0;
+					// 마스터 계정이 아니면 1을 리턴한다.
 					} else {
 						return 1;
 					}
+				// 입력된 패스워드와 데이터베이스의 패스워드가 일치하지 않다면 2를 리턴한다.
 				} else {
 					return 2;
 				}
 			}
 
+			// 입력된 패스워드가 없다면 3을 리턴한다.
 			return 3;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -139,6 +145,7 @@ public class DB_Conn {
 		return 12;
 	}
 
+	// HashMap인 store_map을 만들어간다.
 	public void constructStoreMap() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -163,8 +170,10 @@ public class DB_Conn {
 				String breakStart = res.getString("breakStart");
 				String breakEnd = res.getString("breakEnd");
 
+				// storeDate 클래스의 객체를 생성한다.
 				storeData sd = new storeData(storeCode, storeName, cateCode, openAt, closeAt, offDays, lastOrder, phone,
 						addr, parking, storeImgPath, web, breakStart, breakEnd);
+				// store_map의 키값인 storeCode와 value인 storeData의 객체를 집어넣는다.
 				store_map.put(storeCode, sd);
 			}
 		} catch (Exception e) {
@@ -181,6 +190,7 @@ public class DB_Conn {
 		}
 	}
 
+	// HashMap 인 menu_map을 만들어간다. 
 	public void constructMenuMap() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -195,7 +205,9 @@ public class DB_Conn {
 				String foodName = res.getString("foodName");
 				int price = res.getInt("price");
 
+				// 클래스 menuData의 객체를 생성한다.
 				menuData md = new menuData(storeCode, foodCode, foodName, price);
+				// menu_map에 value인 위 객체와 키값인 foodCode를 집어넣는다.
 				menu_map.put(foodCode, md);
 			}
 		} catch (Exception e) {
@@ -212,7 +224,7 @@ public class DB_Conn {
 		}
 	}
 
-	// HashMap rtd()
+	// HashMap인 rtdCnt_map를 만든다.
 	public void constructRtdCnt_map() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -221,19 +233,26 @@ public class DB_Conn {
 			String sql = "SELECT * FROM reviewTarget";
 			res = stmt.executeQuery(sql);
 
+			// tmp는 카운트 변수이다. 예를 들어, foodCode = 1 일때, tmp[1]은 foodCode가 1인 리뷰타겟의 개수이다.
+			// Max_FoodCode는 무수히 큰 적당한 수(10001)로 대입된 변수다. 모든 foodCode를 표현하기 위함이다.
 			int[] tmp = new int[Max_FoodCode];
 
 			while (res.next()) {
 				int index = res.getInt("_index");
 				int foodCode = res.getInt("foodCode");
 
+				// foodCode일때 배열 값을 1씩 증가시킨다. 리뷰 타겟의 개수를 증가시키는 것과 같다.
 				tmp[foodCode]++;
 			}
 
+			// 모든 foodCode를 순회한다.
 			for (int i = 0; i < Max_FoodCode; i++) {
 				if (tmp[i] == 0)
 					continue;
+				// rtdCntData는 reviewTargetData의 개수를 세는 클래스다.
+				// i는 foodCode이고 tmp[i]는 카운트 변수다.
 				rtdCntData rcd = new rtdCntData(i, tmp[i]);
+				// rtdCnt_map 을 construct 해 간다.
 				rtdCnt_map.put(i, rcd);
 			}
 		} catch (Exception e) {
