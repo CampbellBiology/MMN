@@ -1,15 +1,15 @@
 package DataClass;
 
-public class rtdCntData implements Comparable<rtdCntData>{
+public class rtdCntData implements Comparable<rtdCntData> {
 	int foodCode;
 	int cnt;
-	
+
 	public rtdCntData(int _foodCode, int _cnt) {
 		// TODO Auto-generated constructor stub
 		foodCode = _foodCode;
 		cnt = _cnt;
 	}
-	
+
 	public int getFoodCode() {
 		return foodCode;
 	}
@@ -28,13 +28,12 @@ public class rtdCntData implements Comparable<rtdCntData>{
 
 	@Override
 	public int compareTo(rtdCntData rcd) {
-		if(rcd.cnt < cnt) {
+		if (rcd.cnt < cnt) {
 			return -1;
-		}
-		else if(rcd.cnt > cnt) {
+		} else if (rcd.cnt > cnt) {
 			return 1;
 		}
-		
+
 		return 0;
 	}
 }
