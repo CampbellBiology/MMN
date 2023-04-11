@@ -224,7 +224,14 @@ public class DB_Conn {
 		}
 	}
 
+<<<<<<< HEAD
 	// HashMap인 rtdCnt_map를 만든다.
+=======
+<<<<<<< HEAD
+=======
+	// HashMap rtd()
+>>>>>>> 19156aa25179f53fb2809082bf6bbbdb7e641dbf
+>>>>>>> refs/remotes/origin/main
 	public void constructRtdCnt_map() {
 		Statement stmt = null;
 		ResultSet res = null;
@@ -269,14 +276,20 @@ public class DB_Conn {
 		}
 	}
 
+<<<<<<< HEAD
+=======
 	// foodCode가 주어졌을 때 음식 이름을 리턴한다.
+>>>>>>> 19156aa25179f53fb2809082bf6bbbdb7e641dbf
 	public String getFoodName(int foodCode) {
 		Statement stmt = null;
 		ResultSet res = null;
 		String foodName = "";
 		try {
 			stmt = conn.createStatement();
+<<<<<<< HEAD
+=======
 			// 메뉴테이블에서 foodCode 를 입력해 메뉴들을 가져온다.
+>>>>>>> 19156aa25179f53fb2809082bf6bbbdb7e641dbf
 			String sql = "SELECT * FROM menuTbl Where foodCode = " + foodCode;
 			res = stmt.executeQuery(sql);
 			while (res.next()) {
@@ -301,6 +314,17 @@ public class DB_Conn {
 	}
 
 	// 리뷰가 없다면 음수 리턴
+<<<<<<< HEAD
+	public double getAverageRating(int storeCode) {
+		// 평점의 합
+		int ret = 0;
+		// 리뷰의 개수
+		int cnt = 0;
+
+		if(storeCode == 2)
+			System.out.println("storeCode : "+storeCode);
+		
+=======
 	// 평균평점을 리턴하는 함수
 	public double getAverageRating(int storeCode) {
 		// 평점의 합
@@ -308,10 +332,18 @@ public class DB_Conn {
 		// 리뷰의 개수
 		int cnt = 0;
 
+>>>>>>> 19156aa25179f53fb2809082bf6bbbdb7e641dbf
 		Statement stmt = null;
 		ResultSet res = null;
 		try {
 			stmt = conn.createStatement();
+<<<<<<< HEAD
+			String sql = "SELECT * FROM reviewTbl Where storeCode = " + storeCode;
+			res = stmt.executeQuery(sql);
+			while (res.next()) {
+				int rating = res.getInt("rating");
+				ret += rating;
+=======
 			// 해당 가게코드가 storeCode인 리뷰들을 가져온다.
 			String sql = "SELECT * FROM reviewTbl Where storeCode = " + storeCode;
 			res = stmt.executeQuery(sql);
@@ -323,6 +355,7 @@ public class DB_Conn {
 				// 평점을 모두 더해준다.
 				ratingSum += rating;
 				// 리뷰의 개수
+>>>>>>> 19156aa25179f53fb2809082bf6bbbdb7e641dbf
 				cnt++;
 			}
 		} catch (Exception e) {
@@ -338,6 +371,15 @@ public class DB_Conn {
 			}
 		}
 
+<<<<<<< HEAD
+		if (cnt == 0)
+			return -1;
+
+		return ((double) ret) / ((double) cnt);
+	}
+	
+
+=======
 		// 가게코드가 storeCode인 리뷰가 하나도 없다면 음수를 리턴한다.
 		if (cnt == 0)
 			return -1;
@@ -346,6 +388,7 @@ public class DB_Conn {
 	}
 	
 	// HashMap인 store_map을 ArrayList로 바꿔준다.
+>>>>>>> 19156aa25179f53fb2809082bf6bbbdb7e641dbf
 	public ArrayList<storeData> storefindAll() {
 		return new ArrayList<>(store_map.values());
 	}
@@ -355,7 +398,10 @@ public class DB_Conn {
 		return new ArrayList<>(menu_map.values());
 	}
 
+<<<<<<< HEAD
+=======
 	// HashMap인 rtdCnt_map을 ArrayList로 바꿔준다.
+>>>>>>> 19156aa25179f53fb2809082bf6bbbdb7e641dbf
 	public ArrayList<rtdCntData> rtdCntfindAll() {
 		return new ArrayList<>(rtdCnt_map.values());
 	}

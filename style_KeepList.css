@@ -1,0 +1,95 @@
+
+.background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+
+  /* 숨기기 */
+  z-index: -1;
+  opacity: 0;
+}
+
+.show {
+  opacity: 1;
+  z-index: 1000;
+  transition: all 0.5s;
+}
+
+.window {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.popup {
+  overflow: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffffff;
+  box-shadow: 0 2px 7px rgba(0, 0, 0, 0.3);
+
+  /* 임시 지정 */
+  width: 230px;
+  height: 600px;
+
+  /* 초기에 약간 아래에 배치 */
+  transform: translate(-50%, -40%);
+}
+
+.show .popup {
+  transform: translate(-50%, -50%);
+  transition: all 0.5s;
+}
+
+
+
+
+ /* 여기서부터 팝업 안 */
+
+
+#store {
+  background-color: black;
+  width: 200px;
+  height: 120px;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 5px;
+  margin-bottom: 10px;
+}
+
+#keep_icon {
+ width: 30px;
+ height: 30px;
+ background-color: blue;
+ position: absolute;
+ margin-left: 170px;
+}
+#store_photo {
+  background-color: rgb(240, 240, 240);
+  width: 100px;
+  height: 100px;
+  float: left;
+}
+#store_details {
+  background-color: rgb(220, 220, 220);
+  width: 100px;
+  float:right;
+}
+#store_name {
+  background-color: rgb(175, 175, 175);
+}
+#store_score {
+  background-color: rgb(131, 129, 129);
+}
+#store_category {
+  background-color: rgb(90, 90, 90);
+}
+#store_address {
+  background-color: rgb(46, 45, 45);
+}
