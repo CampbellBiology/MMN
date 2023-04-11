@@ -1,0 +1,55 @@
+<!Doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <title>MMN-가입하기</title>
+
+    <link rel="stylesheet" href="../CSS/style_signIn.css">
+</head>
+
+<body>
+    <main>
+        <form method="post" action ="join">
+            <div id="leftside">
+                <div id="logo"><img src="../UI/UI/text_logo.png" width="300px"></div>
+                <div id="maintext">회원가입</div>
+            </div>
+            <div id="form">
+                <div id="blank"></div>
+                <div id="formText">아이디</div>
+                <input type="text" id="user_id" class="txtbox" name="user_id"><br>
+                <div id="id_noti" class="noti"></div>
+                <div id="blank"></div>
+
+                <div id="formText">비밀번호</div>
+                <input type="text" id="user_pw" class="txtbox" name="user_pw"><br>
+                <div id="pw_noti" class="noti"></div>
+                <div id="blank"></div>
+
+                <div id="formText">비밀번호 확인</div>
+                <input type="text" id="pw_confirm" class="txtbox"><br>
+                <div id="PWConfirm_noti" class="noti"></div>
+                <div id="blank"></div>
+
+                <div id="formText">이름(별명)</div>
+                <input type="text" id="user_name" class="txtbox" name="user_name"><br>
+                <div id="name_noti" class="noti"></div>
+                <div id="blank"></div>
+
+                <div id="formText">이메일</div>
+                <input type="text" id="user_email" class="txtbox" name="user_email"><br>
+                <div id="email_noti" class="noti"></div>
+                <div id="blank"></div>
+            
+
+                <button type="button" class="btn" id="cancel"></button>
+                <button type="submit" class="btn" id="submit"></button>
+            </div>    
+        </form>
+    </main>
+    <br>
+
+</body>
+
+</html>
