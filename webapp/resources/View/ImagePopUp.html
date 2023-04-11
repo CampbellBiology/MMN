@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>MMN-이미지 추가 보기</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../slick-1.8.1/slick/slick.css">
+  <link rel="stylesheet" type="text/css" href="../slick-1.8.1/slick/slick-theme.css">
+  <link rel="stylesheet" type="text/css" href="../CSS/style_ImagePopUp.css">
+
+</head>
+
+<body>
+
+<!-- 아래쪽 페이지 -->
+  <button id="show">팝업열기</button>
+  <div class="background">
+    <div class="window">
+      <!-- 팝업페이지 -->
+      <div class="popup">
+        <button id="close">팝업닫기</button>
+
+<!-- 슬라이드 CSS 라이브러리 -->
+        <div id="mainImage">
+          <img src="../UI/storeImg/1.jpg" id="main_image" width="400px">
+        </div>
+        <section class="center slider">
+          <div>
+            <img src="../UI/storeImg/1.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/2.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/3.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/4.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/5.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/6.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/7.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/8.jpg">
+          </div>
+          <div>
+            <img src="../UI/storeImg/9.jpg">
+          </div>
+        </section>
+
+      </div>
+      <!-- <div>
+        <div></div>
+      </div> -->
+    </div>
+  </div>
+
+  <!-- 모달 팝업 스크립트 -->
+  <script>
+    function show() {
+      document.querySelector(".background").className = "background show";
+    }
+
+    function close() {
+      document.querySelector(".background").className = "background";
+    }
+
+    document.querySelector("#show").addEventListener("click", show);
+    document.querySelector("#close").addEventListener("click", close);
+  </script>
+
+ <!-- 슬라이드 CSS 라이브러리 스크립트 -->
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js" type="text/javascript"></script>
+  <script src="../slick-1.8.1/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+  <script type="text/javascript">
+    $(document).on('ready', function () {
+
+      $(".center").slick({
+        dots: true,
+        infinite: true,
+        centerMode: true,
+        slidesToShow: 5,
+        slidesToScroll: 3
+      });
+    });
+  </script>
+
+</body>
+
+</html>
